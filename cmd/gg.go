@@ -30,7 +30,7 @@ var ggCmd = &cobra.Command{
 	Long: `Add & Commit message & push Automatic execution`,
 	Run: func(cmd *cobra.Command, args []string) {
 		logf.SetOutput(os.Stdout)
-		logf.SetMinLevel(logf.WARN)
+		logf.SetMinLevel(logf.INFO)
 		tm := time.Now()
 		dir, err := os.Getwd()
 		if err == nil {
@@ -38,11 +38,11 @@ var ggCmd = &cobra.Command{
 		}
 		logf.Debug("時間の確認:" + tm.Format(DateFormat) + "\n")
 		add, err := exec.Command("git", "add", "--all").CombinedOutput()
-		logf.Warnf("%v\n", err)
+		logf.Errorf("%v\n", err)
 		cmt, err := exec.Command("git", "commit", "-m", "[Commit]" + tm.Format(DateFormat)).CombinedOutput()
-		logf.Warnf("%v\n", err)
+		logf.Errorf("%v\n", err)
 		push, err := exec.Command("git", "push", "-u").CombinedOutput()
-		logf.Warnf("%v\n", err)
+		logf.Errorf("%v\n", err)
 
 		logf.Println(string(add))
 		logf.Println(string(cmt))
