@@ -49,9 +49,15 @@ var ggCmd = &cobra.Command{
 		if err != nil {
 			logf.Errorf("%v\n", err)
 		}
-		logf.Println(string(add))
-		logf.Println(string(cmt))
-		logf.Println(string(push))
+		if add != nil {
+			logf.Printf(string(add))
+		}
+		if cmt != nil {
+			logf.Printf(string(cmt))
+		}
+		if push != nil {
+			logf.Printf(string(push))
+		}
 	},
 }
 
