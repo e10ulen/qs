@@ -29,6 +29,8 @@ var ggCmd = &cobra.Command{
 	Short: "Commit and Push",
 	Long: `Add & Commit message & push Automatic execution`,
 	Run: func(cmd *cobra.Command, args []string) {
+		logf.SetOutput(os.Stdout)
+		logf.SetMinLevel(logf.WARN)
 		tm := time.Now()
 		dir, err := os.Getwd()
 		if err == nil {
