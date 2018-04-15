@@ -36,7 +36,7 @@ var ggCmd = &cobra.Command{
 		}
 		logf.Debug("時間の確認:" + tm.Format(DateFormat) + "\n")
 		add, err := exec.Command("git", "add", "--all").CombinedOutput()
-		logf.Warnf("%s\n", err)
+		logf.Warnf("%v\n", err)
 		cmt, err := exec.Command("git", "commit", "-m", "[Commit]" + tm.Format(DateFormat)).CombinedOutput()
 		logf.Warnf("%s\n", err)
 		push, err := exec.Command("git", "push", "-u").CombinedOutput()
