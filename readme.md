@@ -1,4 +1,4 @@
-# CommandLine tool for Golang
+# Golang for CommandLine tool
 
 # Usage
 [qqw](https://github.com/e10ulen/qqw)の書き直し版  
