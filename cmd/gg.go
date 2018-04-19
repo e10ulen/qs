@@ -20,6 +20,7 @@ import (
 	"time"
 	"github.com/spiegel-im-spiegel/logf"
 	"github.com/spf13/cobra"
+	"github.com/e10ulen/sandbox/lib"
 )
 
 const DateFormat = "2006/01/02 15:04"
@@ -41,7 +42,7 @@ var ggCmd = &cobra.Command{
 		if err != nil {
 			logf.Errorf("%v\n", err)
 		}
-		cmt, err := exec.Command("git", "commit", "-m", "[Commit]" + tm.Format(DateFormat)).CombinedOutput()
+		cmt, err := exec.Command("git", "commit", "-m", "[Commit]" + tm.Format(DateFormat) + lib.ScanLine()).CombinedOutput()
 		if err != nil {
 			logf.Errorf("%v\n", err)
 		}
