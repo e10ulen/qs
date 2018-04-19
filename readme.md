@@ -14,7 +14,8 @@ logの出力については[logf](https://github.com/spiegel-im-spiegel/logf)を
 実質 ``qqw gc`` と同じ動作をする。  
 
 ##  Update
-コミットメッセージにテキスト入力できるようになりました。
+コミットメッセージにテキスト入力できるようになりました。  
+（多分パイプで `` echo "readme.md update" | qs gg `` ができる気がする）
 
 ##  そのうち
 旧習作というか、自分で使いたくて作った[ht](https://github.com/e10ulen/ht)のようにコミットメッセージ入力できるようにします。  
