@@ -42,7 +42,7 @@ var ggCmd = &cobra.Command{
 		if err != nil {
 			logf.Errorf("%v\n", err)
 		}
-		cmt, err := exec.Command("git", "commit", "-m", "[Commit]" + tm.Format(DateFormat) + lib.ScanLine()).CombinedOutput()
+		cmt, err := exec.Command("git", "commit", "-m", "[Commit]" + tm.Format(DateFormat) + " " + lib.ScanLine()).CombinedOutput()
 		if err != nil {
 			logf.Errorf("%v\n", err)
 		}
