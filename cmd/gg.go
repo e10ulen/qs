@@ -15,49 +15,53 @@
 package cmd
 
 import (
+	"log"
 	"os"
 	"os/exec"
 	"time"
-	"github.com/spiegel-im-spiegel/logf"
-	"github.com/spf13/cobra"
+
+	"github.com/comail/colog"
 	"github.com/e10ulen/sandbox/lib"
+	"github.com/spf13/cobra"
 )
 
 const DateFormat = "2006/01/02 15:04"
+
 // ggCmd represents the gg command
 var ggCmd = &cobra.Command{
 	Use:   "gg",
 	Short: "Commit and Push",
-	Long: `Add & Commit message & push Automatic execution`,
+	Long:  `Add & Commit message & push Automatic execution`,
 	Run: func(cmd *cobra.Command, args []string) {
-		logf.SetOutput(os.Stdout)
-		logf.SetMinLevel(logf.INFO)
+		colog.Register()
+		colog.SetMinLevel(colog.LInfo)
 		tm := time.Now()
 		dir, err := os.Getwd()
 		if err == nil {
-			logf.Debugf("ディレクトリ取得の確認:" + dir + "\n")
+			log.Print("d:ディレクトリ取得の確認:" + dir + "\n")
 		}
-		logf.Debug("時間の確認:" + tm.Format(DateFormat) + "\n")
+		log.Print("d:時間の確認:" + tm.Format(DateFormat) + "\n")
 		add, err := exec.Command("git", "add", "--all").CombinedOutput()
 		if err != nil {
-			logf.Errorf("%v\n", err)
+			log.Print("e:%v\n", err)
 		}
-		cmt, err := exec.Command("git", "commit", "-m", "[Commit]" + tm.Format(DateFormat) + " " + lib.ScanLine()).CombinedOutput()
+		get := "コミットメッセージを入力してください"
+		cmt, err := exec.Command("git", "commit", "-m", "[Commit]"+tm.Format(DateFormat)+" "+lib.ScanLine(get)).CombinedOutput()
 		if err != nil {
-			logf.Errorf("%v\n", err)
+			log.Print("e:%v\n", err)
 		}
 		push, err := exec.Command("git", "push", "-u").CombinedOutput()
 		if err != nil {
-			logf.Errorf("%v\n", err)
+			log.Print("e:%v\n", err)
 		}
 		if add != nil {
-			logf.Printf(string(add))
+			log.Println(string(add))
 		}
 		if cmt != nil {
-			logf.Printf(string(cmt))
+			log.Println(string(cmt))
 		}
 		if push != nil {
-			logf.Printf(string(push))
+			log.Println(string(push))
 		}
 	},
 }
