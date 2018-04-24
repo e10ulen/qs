@@ -34,7 +34,7 @@ var ggCmd = &cobra.Command{
 	Long:  `Add & Commit message & push Automatic execution`,
 	Run: func(cmd *cobra.Command, args []string) {
 		colog.Register()
-		colog.SetMinLevel(colog.LInfo)
+		colog.SetMinLevel(colog.LWarning)
 		tm := time.Now()
 		dir, err := os.Getwd()
 		if err == nil {
