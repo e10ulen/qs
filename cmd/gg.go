@@ -45,7 +45,7 @@ var ggCmd = &cobra.Command{
 		if err != nil {
 			log.Print("e:%v\n", err)
 		}
-		get := "コミットメッセージを入力してください"
+		get := "コミットメッセージを入力してください\n"
 		cmt, err := exec.Command("git", "commit", "-m", "[Commit]"+tm.Format(DateFormat)+" "+lib.ScanLine(get)).CombinedOutput()
 		if err != nil {
 			log.Print("e:%v\n", err)
